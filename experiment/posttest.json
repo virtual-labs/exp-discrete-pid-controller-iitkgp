@@ -2,38 +2,61 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Q1. What is the main advantage of using a discrete PID controller over a continuous one?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Can be implemented using digital computers",
+        "b": "More precise than analog controllers",
+        "c": "Less affected by noise",
+        "d": "All of the above"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q2. What is the discrete-time equivalent of the integral term in a PID controller?",
+      "answers": {
+        "a": "<img src=./images/poq2a.png>",
+        "b": "<img src=./images/poq2b.png>",
+        "c": "<img src=./images/poq2c.png>",
+        "d": "<img src=./images/poq2d.png>"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Q3. Which method is commonly used to discretize the PID controller for digital implementation?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Fourier Transform",
+        "b": "Z-Transform",
+        "c": "Laplace Transform",
+        "d": "Discrete Fourier Transform"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q4. What is the discrete state matrix for the given continuous state matrix <img src=./images/poq4a1.png>? ( <img src=./images/poq4t.png> is the sampling time) <br/><img src=./images/poq4m.png>",
+      "answers": {
+        "a": "<img src=./images/poq4a.png>",
+        "b": "<img src=./images/poq4b.png>",
+        "c": "<img src=./images/poq4c.png>",
+        "d": "<img src=./images/poq4d.png>"
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Q5. What is the primary purpose of adding an integral action in a state feedback control system?",
+      "answers": {
+        "a": "To improve the stability of the system.",
+        "b": "To eliminate steady-state error for constant reference input.",
+        "c": "To increase the system bandwidth.",
+        "d": "To reduce system overshoot."
+        
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
     }
+    
   ]
 }
