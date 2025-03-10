@@ -52,7 +52,7 @@ The integral state is defined as:<br/>
 
 $$ x_3 [k+1]=x_3 [k]+Ts(r[k]-x_1 [k]) \tag{6} $$
 
-where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input (desired position), <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>.
+where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>.
 <br/><br/>
 <b><i>State Space Model of the DC motor:</i></b> <br>
 <br/> Continuous State Space form: <br/>
