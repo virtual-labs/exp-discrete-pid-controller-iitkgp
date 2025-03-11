@@ -30,15 +30,22 @@ The discrete PID controller is essential for digital systems controlling DC moto
 
 Linear time invariant system may be represented in state space form by the following equations:<br/>
 State equation:
+
 $$ \dot{x}(t)=A x(t)+B u(t) \tag{2a} $$
+
 Output equation:
-$$ y(t)= C x(t) u(t) \tag{2b} $$
+
+$$ y(t)= C x(t) \tag{2b} $$
 
 Discrete state space form represented by the following equations:<br/>
 State equation:
+
 $$ {x}[k+1]=F x[k]+g u[k] \tag{3a} $$
+
 Output equation:
-$$ y[k])= C x[k] u[k] \tag{3b} $$
+
+$$ y[k] = C x[k] \tag{3b} $$
+
 <div align="center">
 <img class="img-fluid"  src="./images/F_g.png" alt=""><br>
 </div>
@@ -46,7 +53,8 @@ $$ y[k])= C x[k] u[k] \tag{3b} $$
 The integral state is defined as:<br/>
 
 $$ x_3 [k+1]=x_3 [k]+T_s(r[k]-x_1 [k]) \tag{4} $$
-where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input (desired position), <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>.
+
+where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>.
 <br/><br/>
 
 
