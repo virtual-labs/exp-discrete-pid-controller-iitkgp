@@ -707,9 +707,9 @@ function CNTR(){
 			   console.log(Ka);
 			   
 			   
-			   var Padd = math.divide(math.round(math.multiply(math.add(p1,p2,p3),1000)),1000);
+			   var Padd = math.divide(math.round(math.multiply(math.add(-p1,-p2,-p3),1000)),1000);
 			   var P12add = math.divide(math.round(math.multiply(math.add(p12,p13,p23),1000)),1000);
-			   var P123 = math.divide(math.round(math.multiply(math.multiply(p1,p2,p3),1000)),1000);
+			   var P123 = math.divide(math.round(math.multiply(math.multiply(-p1,-p2,-p3),1000)),1000);
 			   
 			   DCharEq=" Desired characteristic equation from poles\t:";
 			   document.getElementById("DChar_Eq").innerHTML=DCharEq;
@@ -735,7 +735,7 @@ function CNTR(){
 			   
 			   CharEq=" Characteristic equation of the closed loop system\t:";
 			   document.getElementById("Char_Eq").innerHTML=CharEq;
-			   document.getElementById('Closed_loop_char').innerHTML = ' \t z<sup>3</sup>\t+\t[\t('+ bd1+')k<sub>1</sub>\t+\t('+ bd2+')k<sub>2</sub>\t-\t('+ad22_2+')\t]\t z<sup>2</sup>\t+\t[\t(('+ad12bd2_bd1_ad22bd1+')\tk<sub>1</sub>\t-\t('+bd2_2+')\tk<sub>2</sub>\t+\t('+ad31bd1+')\tk<sub>3</sub>\t+\t'+ad22_1+'\t]\t z\t+\t[\t('+ad22bd1_ad12bd2+')\t k<sub>1</sub>\t+\t('+bd2+')\tk<sub>2</sub>\t+\t('+ad12ad31bd2_ad22ad31bd1+')k<sub>3</sub>\t-\t('+ad22+')]\t=\t0';    
+			   document.getElementById('Closed_loop_char').innerHTML = ' \t z<sup>3</sup>\t+\t[\t('+ bd1+')k<sub>1</sub>\t+\t('+ bd2+')k<sub>2</sub>\t-\t('+ad22_2+')\t]\t z<sup>2</sup>\t+\t[\t('+ad12bd2_bd1_ad22bd1+')\tk<sub>1</sub>\t-\t('+bd2_2+')\tk<sub>2</sub>\t+\t('+ad31bd1+')\tk<sub>3</sub>\t+\t'+ad22_1+'\t]\t z\t+\t[\t('+ad22bd1_ad12bd2+')\t k<sub>1</sub>\t+\t('+bd2+')\tk<sub>2</sub>\t+\t('+ad12ad31bd2_ad22ad31bd1+')k<sub>3</sub>\t-\t('+ad22+')]\t=\t0';    
 			   
 			  // Kfb="Feedback gain K = " +K+ "";
 			   
