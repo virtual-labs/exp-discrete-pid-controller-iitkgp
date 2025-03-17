@@ -659,18 +659,24 @@ function CNTR(){
 			   var p13 = math.multiply(p1,p3);
 			   var p23 = math.multiply(p2,p3);
 			   
-			   var k2 = math.divide(math.round(math.multiply(math.divide(math.add(p1,p2,p3,ad22,2),bd2),1000)),1000);
+			   /* var k2 = math.divide(math.round(math.multiply(math.divide(math.add(p1,p2,p3,ad22,2),bd2),1000)),1000);
 			   console.log(k2);
 			   var k1 = math.divide(math.round(math.multiply(math.divide(math.add(p12,p23,p13,-ad22,-ad22,-1,math.multiply(2,bd2,k2)),math.multiply(ad12,bd2)),1000)),1000);
 			   console.log(k1);
 			   var k3 = math.divide(math.round(math.multiply(math.divide(math.add(-p123,-ad22,-math.multiply(ad12,bd2,k1),math.multiply(bd2,k2)),math.multiply(ad12,ad31,bd2)),1000)),1000);
 			   
-			   console.log(k3);
+			   console.log(k3); */
 			   
 			   //var k1 = math.divide(p1p2p3p4, math.add(a23b4,-a43b2));
 			   
 			   
+			   var coeff = [ [ bd1, bd2, 0],[math.add(math.multiply(ad12,bd2),-math.multiply(bd1,ad22),-bd1), -math.multiply(2,bd2), math.multiply(ad31,bd1)],[math.add(math.multiply(ad22,bd1),-math.multiply(ad12,bd2)),bd2,math.add(math.multiply(ad12,bd2,ad31),-math.multiply(ad31,bd1,ad22))] ];
+			   var cont = [math.add(ad22,-p1,-p2,-p3,2), math.add(math.multiply(p1,p2),math.multiply(p1,p3),math.multiply(p2,p3),-math.multiply(2,ad22),-1), math.add(ad22,-math.multiply(p1,p2,p3))];
+			   var sol = math.lusolve(coeff,cont);
 			   
+			   var k1 = math.divide(math.round(math.multiply(sol[0][0],1000)),1000);
+			   var k2 = math.divide(math.round(math.multiply(sol[1][0],1000)),1000);
+			   var k3 = math.divide(math.round(math.multiply(sol[2][0],1000)),1000);
 			   
 			   
 			   
@@ -707,7 +713,7 @@ function CNTR(){
 			   
 			   DCharEq=" Desired characteristic equation from poles\t:";
 			   document.getElementById("DChar_Eq").innerHTML=DCharEq;
-			   document.getElementById('Desired_char').innerHTML = '  \t s<sup>3</sup>\t+('+Padd+')s<sup>2</sup>\t+\t('+P12add+')\ts+\t('+P123+')\t=\t0';
+			   document.getElementById('Desired_char').innerHTML = '  \t z<sup>3</sup>\t+('+Padd+')z<sup>2</sup>\t+\t('+P12add+')\t z +\t('+P123+')\t=\t0';
 			   
 			   
 			   
@@ -716,12 +722,20 @@ function CNTR(){
 			   var ad22_1 = math.divide(math.round(math.multiply(math.add(ad22,ad22,1),1000)),1000);
 			   var bd2_2 = math.divide(math.round(math.multiply(math.add(bd2,bd2),1000)),1000);
 			   var ad12bd2 = math.divide(math.round(math.multiply(math.multiply(ad12,bd2),1000)),1000);
-			   var ad12ad13bd2 = math.divide(math.round(math.multiply(math.multiply(ad12,ad31,bd2),1000)),1000);
+			   var ad22bd1 = math.divide(math.round(math.multiply(math.multiply(ad22,bd1),1000)),1000);
+			   var ad31bd1 = math.divide(math.round(math.multiply(math.multiply(ad31,bd1),1000)),1000);
 			   
+			   var ad12bd2_bd1_ad22bd1 = math.divide(math.round(math.multiply(math.add(ad12bd2,-bd1,-ad22bd1),1000)),1000);
+			   var ad22bd1_ad12bd2 = math.divide(math.round(math.multiply(math.add(ad22bd1,-ad12bd2),1000)),1000);
+			   
+			   var ad12ad31bd2 = math.divide(math.round(math.multiply(math.multiply(ad12,ad31,bd2),1000)),1000);
+			   var ad22ad31bd1 = math.divide(math.round(math.multiply(math.multiply(ad22,ad31,bd1),1000)),1000);
+			   
+			   var ad12ad31bd2_ad22ad31bd1 = math.divide(math.round(math.multiply(math.add(ad12ad31bd2,-ad22ad31bd1 ),1000)),1000);
 			   
 			   CharEq=" Characteristic equation of the closed loop system\t:";
 			   document.getElementById("Char_Eq").innerHTML=CharEq;
-			   document.getElementById('Closed_loop_char').innerHTML = ' \t s<sup>3</sup>\t+[\t'+ bd2+'k<sub>2</sub>\t+\t\t('+ad22_2+')\t]\t s<sup>2</sup>\t+[\t'+ad22_1+'\t-\t('+bd2_2+')\tk<sub>2</sub>\t+\t('+ad12bd2+')\tk<sub>1</sub>]\ts\t+\t[\t('+bd2+')\tk<sub>2</sub>\t-\t('+ad12bd2+')\t k<sub>1</sub>\t-\t('+ad12ad13bd2+')k<sub>3</sub>\t-\t('+ad22+')]\t=\t0';    
+			   document.getElementById('Closed_loop_char').innerHTML = ' \t z<sup>3</sup>\t+\t[\t('+ bd1+')k<sub>1</sub>\t+\t('+ bd2+')k<sub>2</sub>\t-\t('+ad22_2+')\t]\t z<sup>2</sup>\t+\t[\t(('+ad12bd2_bd1_ad22bd1+')\tk<sub>1</sub>\t-\t('+bd2_2+')\tk<sub>2</sub>\t+\t('+ad31bd1+')\tk<sub>3</sub>\t+\t'+ad22_1+'\t]\t z\t+\t[\t('+ad22bd1_ad12bd2+')\t k<sub>1</sub>\t+\t('+bd2+')\tk<sub>2</sub>\t+\t('+ad12ad31bd2_ad22ad31bd1+')k<sub>3</sub>\t-\t('+ad22+')]\t=\t0';    
 			   
 			  // Kfb="Feedback gain K = " +K+ "";
 			   
