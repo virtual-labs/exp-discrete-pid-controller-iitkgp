@@ -7,7 +7,7 @@
 <b>Discipline | <b>Electrical Engineering 
 :--|:--|
 <b> Lab | <b> Digital Control Laboratory
-<b> Experiment|     <b> Design of a discrete PID controller for a DC motor and Exp 10
+<b> Experiment|     <b>Design of a Discrete PID Controller for a DC Motor and Exp 10
 
 ### About the Experiment 
 
@@ -54,7 +54,7 @@ The integral state is defined as:<br/>
 
 $$ x_3 [k+1]=x_3 [k]+T_s(r[k]-x_1 [k]) \tag{4} $$
 
-where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>.
+where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position (<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>).
 <br/><br/>
 
 
