@@ -76,7 +76,7 @@ The control law is:
 
 $$ u[k] = - K x[k] + r[k] \tag{10} $$
 
-where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K </span> = [ k<sub>1</sub>, k<sub>2</sub>,k<sub>3</sub> ] is the state feedback gain matrix corresponding to the position, velocity, and integral error terms.
+where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span>  = [ <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k<sub>1</sub>, k<sub>2</sub>, k<sub>3</sub></span> ] is the state feedback gain matrix corresponding to the position, velocity, and integral error terms.
 <br/><br/>
 Using pole placement techniques, compute the feedback gains that place the poles of the closed-loop system at desired locations.
 <br/>
