@@ -5,7 +5,7 @@
 <figcaption style="color:black"> Fig.1. DC Motor Model </figcaption>						  
 </div><br/>			        
 <b><i>The DC motor dynamics:</i></b> <br>
-The DC motor dynamics are represted by the following equation: <br/>
+The DC motor dynamics are represted by the following equations: <br/>
 <b><i>Mechanical equation:</i></b> <br>
 
 $$ J\ddot{\theta}(t)+b{\dot\theta}(t)=K u(t)  \tag{1}$$
@@ -78,7 +78,7 @@ $$ u[k] = - K x[k] + r[k] \tag{10} $$
 
 where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span>  = [ <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k<sub>1</sub>, k<sub>2</sub>, k<sub>3</sub></span> ] is the state feedback gain matrix corresponding to the position, velocity, and integral error terms.
 <br/><br/>
-Using pole placement techniques, compute the feedback gains that place the poles of the closed-loop system at desired locations.
+Using pole placement technique, compute the feedback gains that place the poles of the closed-loop system at desired locations.
 <br/>
 This ensures that the closed-loop system behaves with the desired PID-like control:<br/>
 Proportional control <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K<sub>p</sub></span> : Provided by <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub></span>[<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k</span>] (position), that is ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k<sub>1</sub></span> ), <br/>

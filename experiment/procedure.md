@@ -64,12 +64,12 @@
 <b>Fig. 7. Run button to calculate the selected design </b>						  
 </div>
 
-8. Click on the 'Rank' or 'Determinant'  or 'inference' or ' Gain Values' buttons to get the the Controllability test information and gain values. 
+8. Click on the 'Rank' or 'Determinant'  or 'Inference' or ' Gain Values' buttons to get the the Controllability test information and gain values. 
 
 <div align="center">
 <img class="img-fluid"  src="./images/Qc.png" alt="">
 
-<b>Fig. 8. Buttons to get Rank, determinant, inference and gain values information </b>						  
+<b>Fig. 8. Buttons to get Rank, Determinant, Inference and Gain Values information </b>						  
 </div>
 
 9. Click on 'Clear' button to enter the new parameter values of the system. 
