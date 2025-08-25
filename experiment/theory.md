@@ -52,7 +52,7 @@ The integral state is defined as:<br/>
 
 $$ x_3 [k+1]=x_3 [k]+Ts(r[k]-x_1 [k]) \tag{6} $$
 
-where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>.
+where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position (<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>).
 <br/><br/>
 <b><i>State Space Model of the DC motor:</i></b> <br>
 <br/> Continuous State Space form: <br/>
@@ -60,7 +60,7 @@ where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]
 $$	\begin{bmatrix} 	\dot{x}_1(t)  \newline	\dot{x}_2(t) \end{bmatrix}	= \begin{bmatrix} 	0  & 1 \newline	0 & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} 	x_1(t)  \newline	x_2(t) \end{bmatrix} + \begin{bmatrix} 0  \newline	\frac{K}{J} \end{bmatrix} u(t)	\quad	\tag{7} $$ 
 
 where,
-<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub></span> is the position ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ), <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>2</sub></span> is the velocity, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span> is the input voltage, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">y(t)</span> is the outpuy (position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ). 
+<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub></span> is the position ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ), <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>2</sub></span> is the velocity, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span> is the input voltage, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">y(t)</span> is the output (position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ). 
 <br/><br/>
 <br/> Discrete State Space form:
 
