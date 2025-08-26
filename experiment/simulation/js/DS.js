@@ -77,10 +77,10 @@ function system(){
 			//CSSM=" Continuous State Space Model:\t:";
 			//document.getElementById("C_SS_M").innerHTML=CSSM;
 			
-			document.getElementById('matA').innerHTML = ' A =['+ a11+',\t'+a12+';\t\t'+a21+','+a22+']';
-			document.getElementById('matB').innerHTML = ' B =['+ b1+';\t\t'+b2+']';
-			document.getElementById('matC').innerHTML = ' C =['+ c11+',\t'+c12+']';
-			document.getElementById('matD').innerHTML = ' D =['+ d11+']';
+			document.getElementById('matA').innerHTML = '<span style="font-family:Bodoni MT;font-style:italic;font-size:18px"> A </span> =['+ a11+',\t'+a12+';\t\t'+a21+','+a22+']';
+			document.getElementById('matB').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">B </span> =['+ b1+';\t\t'+b2+']';
+			document.getElementById('matC').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">C </span> =['+ c11+',\t'+c12+']';
+			document.getElementById('matD').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">D </span> =['+ d11+']';
 			
 			//outputText1=" G(s)= ["+b0+"s\u00B2+("+b1+")s+("+b2+ ")] / [" +a0+"s<sup>2</sup>+("+a1+")s+("+a2+ ")]";
 			
@@ -211,8 +211,8 @@ function system(){
 			//DSSM=" Discrete State Space Model:\t:";
 			//document.getElementById("D_SS_M").innerHTML=DSSM;
 			
-			document.getElementById('matAd').innerHTML = ' F =['+ ad11+',\t'+ad12+';\t\t'+ad21+','+ad22+']';
-			document.getElementById('matBd').innerHTML = ' g =['+ bd1+';\t\t'+bd2+']';
+			document.getElementById('matAd').innerHTML = '<span style="font-family:Bodoni MT;font-style:italic;font-size:18px"> F </span>=['+ ad11+',\t'+ad12+';\t\t'+ad21+','+ad22+']';
+			document.getElementById('matBd').innerHTML = '<span style="font-family:Calibri;font-style:italic;font-size:18px"> g </span>=['+ bd1+';\t\t'+bd2+']';
 			//document.getElementById('matCd').innerHTML = ' C =['+ c11+',\t'+c12+']';
 			//document.getElementById('matDd').innerHTML = ' D =['+ d11+']';
 			
@@ -380,8 +380,8 @@ function AddingIS(){
 			var mF = math.matrix([[ad11, ad12, ad13], [ad21, ad22, ad23],[ad31, ad32,ad33]]);
 			var mg = math.matrix([[bd1], [bd2],[bd3]]);
 			
-			document.getElementById('matAad').innerHTML = ' Fa =['+ ad11+',\t'+ad12+',\t'+ad13+';\t\t'+ad21+','+ad22+',\t'+ad23+';\t\t'+ad31+','+ad32+',\t'+ad33+']';
-			document.getElementById('matBad').innerHTML = ' ga =['+ bd1+';\t\t'+bd2+';\t\t'+bd3+']';
+			document.getElementById('matAad').innerHTML = '<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">F<sub>a</sub></span> = ['+ ad11+',\t'+ad12+',\t'+ad13+';\t\t'+ad21+','+ad22+',\t'+ad23+';\t\t'+ad31+','+ad32+',\t'+ad33+']';
+			document.getElementById('matBad').innerHTML = '<span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> = ['+ bd1+';\t\t'+bd2+';\t\t'+bd3+']';
             
 			
 			document.getElementById("run1").style.visibility="visible";
@@ -627,9 +627,9 @@ function CNTR(){
 			var Faga= math.matrix([abd1,abd2, abd3 ]);
 			var FaFaga= math.matrix([aabd1, aabd2, aabd3]);
 						
-			document.getElementById('matQcg').innerHTML = 'ga ='+ ga;
-			document.getElementById('matQcFg').innerHTML = ' Faga ='+ Faga;
-			document.getElementById('matQcFFg').innerHTML = ' Fa<sup>2</sup>ga ='+ FaFaga;
+			document.getElementById('matQcg').innerHTML = '<span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> ='+ ga;
+			document.getElementById('matQcFg').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">F<sub>a</sub></span><span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> ='+ Faga;
+			document.getElementById('matQcFFg').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">F<sub>a</sub></span><sup>2</sup><span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> ='+ FaFaga;
 			
 			
 			//var Qc1= math.matrix([[0, 1.818, -0.331, 12.209], [1.818, -0.331, 12.209, -4.433], [0, 4.545, -0.827, 141.873], [4.545, -0.827, 141.873, -31.349]]);
@@ -638,7 +638,7 @@ function CNTR(){
 			
 			var Qc= math.matrix([[bd1, abd1, aabd1],[bd2, abd2, aabd2],[bd3, abd3, aabd3]]);
 			
-			document.getElementById('matQc').innerHTML = ' Q<sub>c</sub> =['+ bd1+',\t'+abd1+',\t'+aabd1+';\t\t'+bd2+','+abd2+',\t'+aabd2+';\t\t'+bd3+',\t'+abd3+',\t'+aabd3+']'
+			document.getElementById('matQc').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">Q<sub>c</sub></span> =['+ bd1+',\t'+abd1+',\t'+aabd1+';\t\t'+bd2+','+abd2+',\t'+aabd2+';\t\t'+bd3+',\t'+abd3+',\t'+aabd3+']'
 			
 			var DQc= math.divide(math.round(math.multiply(math.det(Qc),1000)),1000);
 			console.log(DQc);
@@ -646,8 +646,8 @@ function CNTR(){
 			//DQc=0;
 			
 			if (DQc!=0)
-			{  Cntrl_Test1=" Rank of Q<sub>c</sub> = Order of A = n = 3";			   
-			   Cntrl_Test2="Determinent of Q<sub>c</sub> = " +DQc+ "";				    
+			{  Cntrl_Test1=" Rank is 3";			   
+			   Cntrl_Test2="Determinent is " +DQc+ "";				    
 			   Cntrl_Test3=" System is completely controllable";
 			   document.getElementById("Cntrl_Test1").innerHTML=Cntrl_Test1;
 			   document.getElementById("Cntrl_Test2").innerHTML=Cntrl_Test2;
@@ -750,8 +750,8 @@ function CNTR(){
 			   
 			}
 			   else 
-			   {   Cntrl_Test1=" Rank of Q<sub>c</sub> < Order of A = n = 3";
-		           Cntrl_Test2="Determinent of Q<sub>c</sub> = " +DQc+ "";		
+			   {   Cntrl_Test1=" Rank < n = 3";
+		           Cntrl_Test2="Determinent is " +DQc+ "";		
 			       Cntrl_Test3=" System is not controllable";
 			       document.getElementById("Cntrl_Test1").innerHTML=Cntrl_Test1;
 				   document.getElementById("Cntrl_Test2").innerHTML=Cntrl_Test2;

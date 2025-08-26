@@ -119,16 +119,17 @@
 
             </div><!--First col under 2nd row end-->
             <div class="col-md-6"><!--2nd col under 2nd row start-->
-                <p class="h1"> <b> Simulation </b> </p>
+                <p class="h1"> <b>Simulation </b> </p>
             </div><!--2nd col under 2nd row end-->
             <div class="col-md-3"><!--3rd col under 2nd row start-->
 
             </div><!--3rd col under 2nd row end-->
         </div><!--2nd row under 1st container end-->
         <hr>
-        
+       
     </div><!--First Container under body tag end-->
     
+   
 	
     <div class="container p-3 my-5 text-left border"><!--3rd Container under body tag start-->
       <div class="row"><!--First row under 3rd container start-->
@@ -136,13 +137,13 @@
         <div class="col-md-10"><!--2nd col under 3rd container start-->
             <p class="text-center bg-success"> <a class="nav-link" data-bs-toggle="tab"  id="instcontrol" style="background-color:#128BD9"  ><span class=" h3 text-dark"> Instructions </span></a>
               <ol id="inst" style="display:block;height:200px;overflow-y:auto;text-align:justify">
-                      <li> Enter the values of the DC motor parameter. Note: Default values are already given. </li></br>
+                      <li> Enter the values of the DC motor parameters. Note: Default values are already given. </li></br>
   
 					  <li> Click on 'State Space Model' button to get the state space form of the system. </li><br/>
 					  
 					  <li> Click on ' Adding Integral State for PID control' button to get the augmented matrices. </li><br/> 
 					  
-					  <li> Click on ' Enter the pole Location' button to enter desired pole values. </li><br/> 
+					  <li> Click on ' Enter the desired pole location' button to enter desired pole values. </li><br/> 
 					 
 					 <li> Enter the desired negative pole values (in s domain). </li><br/> 
 					 
@@ -191,12 +192,12 @@
 			Enter the values of the following quantities: <br/><br/>
 			<!--<img class = "img-fluid" src="./images/Continuous_System.png" class="img-fluid" > <br/></br>-->
 			
-			<span style="position:absolute;left:40%">Motor inertia :  J</span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="J1" min="0.1" value="0.5" max="1" step="0.05" style="text-align:center" ></span><br/></br>
-			<span style="position:absolute;left:40%">Damping ratio : b</span>  <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="B1" min="0.1" value="0.2" max="1" step="0.05" style="text-align:center" ></span><br/></br>
-			<span style="position:absolute;left:40%">Motor constant :  K</span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="K1" min="0.01" value="0.1" max="1" step="0.01" style="text-align:center" ></span><br/></br>
+			<span style="position:absolute;left:40%">Motor inertia :  <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">J</span></span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="J1" min="0.1" value="0.5" max="1" step="0.05" style="text-align:center" ></span><br/></br>
+			<span style="position:absolute;left:40%">Damping ratio : <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">b</span></span>  <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="B1" min="0.1" value="0.2" max="1" step="0.05" style="text-align:center" ></span><br/></br>
+			<span style="position:absolute;left:40%">Motor constant :  <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span></span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="K1" min="0.01" value="0.1" max="1" step="0.01" style="text-align:center" ></span><br/></br>
 			
-			<span style="position:absolute;left:40%">Sampling Time (sec) :  Ts</span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="Ts1" min="0.01" value="0.8" max="1" step="0.01" style="text-align:center" ></span><br/></br>
-           where, Ts is the sampling time. <br/></br>
+			<span style="position:absolute;left:40%">Sampling Time (sec) :  <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">T<sub>s</sub></span></span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="Ts1" min="0.01" value="0.8" max="1" step="0.01" style="text-align:center" ></span><br/></br>
+           where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">T<sub>s</sub></span> is the sampling time. <br/></br>
 		 <!--  Length to pendulum center of mass : l (m) = &nbsp;<input type="number" id="l1" min="0.1" value="0.3" max="1" step="0.05" style="width:25%" ><br/></br>	
             Mass moment of inertia of the pendulum : I (kg.m^2) = &nbsp;<input type="number" id="I1" min="0.001" value="0.006" max="1" step="0.001" style="width:25%" ><br/></br>  -->
             
@@ -387,9 +388,9 @@
 			
 			<span class="card-text" id="matQc" ></span><br/<br/>
 			 
-			<button class="btn btn-success" onclick="showRank()">Rank of Qc</button>
+			<button class="btn btn-success" onclick="showRank()">Rank of <span style='font-family:Bodoni MT;font-style:italic;font-size:18px'>Q<sub>c</sub></span></button>
 				<span id="Cntrl_Test1" style="display:none"></span><br/><br/>
-			<button class="btn btn-success" onclick="showDetQc()">Determinant of Qc</button>
+			<button class="btn btn-success" onclick="showDetQc()">Determinant of <span style='font-family:Bodoni MT;font-style:italic;font-size:18px'>Q<sub>c</sub></span></button>
 			    <span id="Cntrl_Test2" style="display:none"></span><br/><br/>
 			<button class="btn btn-success" onclick="showinfo()">Inference</button>
 				<span id="Cntrl_Test3" style="display:none"></span><br/><br/>
