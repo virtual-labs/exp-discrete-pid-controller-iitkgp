@@ -5,7 +5,7 @@
 <figcaption style="color:black"> Fig.1. DC Motor Model </figcaption>						  
 </div><br/>			        
 <b><i>The DC motor dynamics:</i></b> <br>
-The DC motor dynamics are represted by the following equations: <br/>
+The DC motor dynamics are represented by the following equations: <br/>
 <b><i>Mechanical equation:</i></b> <br>
 
 $$ J\ddot{\theta}(t)+b{\dot\theta}(t)=K u(t)  \tag{1}$$
