@@ -3,9 +3,10 @@
 <div align="center">
 <img class="img-fluid"  src="./images/DC Motor.png" alt=""><br>        
 <figcaption style="color:black"> Fig.1. DC Motor Model </figcaption>						  
-</div><br/>			        
+</div><br/>	
+
 <b><i>The DC motor dynamics:</i></b> <br>
-The DC motor dynamics are represented by the following equations: <br/>
+The DC motor dynamics are represted by the following equations: <br/>
 <b><i>Mechanical equation:</i></b> <br>
 
 $$ J\ddot{\theta}(t)+b{\dot\theta}(t)=K u(t)  \tag{1}$$
@@ -42,33 +43,36 @@ $$ {x}[k+1]=F x[k]+g u[k] \tag{5a} $$
 
 Output equation:
 
-$$ y[k]= C x[k] \tag{5b} $$
+$$ y[k] = C x[k] \tag{5b} $$
 
 <div align="center">
 <img class="img-fluid"  src="./images/F_g.png" alt=""><br>
 </div>
+
 <b><i>Adding Integral State for PID Control:</i></b> <br>
 The integral state is defined as:<br/>
 
-$$ x_3 [k+1]=x_3 [k]+Ts(r[k]-x_1 [k]) \tag{6} $$
+$$ x_3 [k+1]=x_3 [k]+T_s(r[k]-x_1 [k]) \tag{6} $$
 
 where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position (<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>).
 <br/><br/>
+
 <b><i>State Space Model of the DC motor:</i></b> <br>
 <br/> Continuous State Space form: <br/>
 
-$$	\begin{bmatrix} 	\dot{x}_1(t)  \newline	\dot{x}_2(t) \end{bmatrix}	= \begin{bmatrix} 	0  & 1 \newline	0 & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} 	x_1(t)  \newline	x_2(t) \end{bmatrix} + \begin{bmatrix} 0  \newline	\frac{K}{J} \end{bmatrix} u(t)	\quad	\tag{7} $$ 
+$$	\begin{bmatrix} 	\dot{x}_1(t)  \\	\dot{x}_2(t) \end{bmatrix}	= \begin{bmatrix} 	0  & 1 \\	0 & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} 	x_1(t)  \\	x_2(t) \end{bmatrix} + \begin{bmatrix} 0  \\	\frac{K}{J} \end{bmatrix} u(t)	\quad	\tag{7} $$ 
 
 where,
 <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub></span> is the position ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ), <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>2</sub></span> is the velocity, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span> is the input voltage, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">y(t)</span> is the output (position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ). 
 <br/><br/>
-<br/> Discrete State Space form:
+
+<br/> Discrete State Space form: <br/>
 
 $$	\begin{bmatrix} 	x_1 [k+1]  \newline	x_2 [k+1] \end{bmatrix}	= \begin{bmatrix} 	1  & T_{s} \newline	0 & 1-\frac{b}{J} T_{s} \end{bmatrix} \begin{bmatrix} 	x_1 [k] \newline	x_2 [k] \end{bmatrix} + \begin{bmatrix} \frac{K {T_{s}}^2}{2J}  \newline	\frac{K T_{s}}{J} (1-\frac{b T_{s}}{2J}) \end{bmatrix} u[k]	\quad	\tag{8}$$ 
 
-<br/> Discrete State Space form with Integral state:
+<br/> Discrete State Space form with Integral state: <br/>
 
-$$	\begin{bmatrix} 	x_1 [k+1]  \newline	x_2 [k+1] \newline x_3[k+1] \end{bmatrix}	= \begin{bmatrix} 	1  & T_{s} & 0 \newline	0 & 1-\frac{b}{J} T_{s} & 0 \newline -T_{s} & 0 & 1 \end{bmatrix} \begin{bmatrix} 	x_1 [k] \newline	x_2 [k] \newline x_3[k] \end{bmatrix} + \begin{bmatrix} \frac{K {T_{s}}^2}{2J}  \newline	\frac{K T_{s}}{J} (1-\frac{b T_{s}}{2J}) \newline 0\end{bmatrix} u[k]	\quad	\tag{9} $$ 
+$$	\begin{bmatrix} 	x_1 [k+1]  \newline	x_2 [k+1] \newline x_3[k+1] \end{bmatrix}	= \begin{bmatrix} 	1  & T_{s} & 0 \newline	0 & 1-\frac{b}{J} T_{s} & 0 \newline - T_{s} & 0 & 1 \end{bmatrix} \begin{bmatrix} 	x_1 [k] \newline x_2 [k] \newline x_3[k] \end{bmatrix} + \begin{bmatrix} \frac{K {T_{s}^2}{2J}  \newline	\frac{K T_{s}}{J} (1-\frac{b T_{s}}{2J}) \newline 0\end{bmatrix} u[k]	\quad	\tag{9} $$ 
 
 <b><i>Designing the State Feedback Controller:</i></b> <br>
 Now that the discretized system with the integral state is available, the next step is to design the state feedback controller using pole placement. In this process, the objective is to determine the feedback gains that place the poles of the closed-loop system at desired locations for achieving the desired stability and performance.<br/>
@@ -85,5 +89,6 @@ Proportional control <span style="font-family:Bodoni MT;font-style:italic;font-s
 Derivative control <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K<sub>d</sub></span> : Provided by <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>2</sub></span>[<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k</span>] (velocity), that is ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k<sub>2</sub></span> ), <br/>
 Integral control <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K<sub>i</sub></span> : Provided by <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>3</sub></span>[<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k</span>] (integral of the error) ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k<sub>3</sub></span> ). <br/>
 <br/>
+
 
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>

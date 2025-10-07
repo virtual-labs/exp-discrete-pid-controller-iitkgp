@@ -17,10 +17,13 @@ A discrete PID controller calculates the control signal at each sampling step ba
 The discrete PID controller consists of three terms: Proportional (P), Integral (I), and Derivative (D). Each term is computed using the error signal and its past values, with the discrete-time version typically expressed as:
 </br>
 
+<div align="center">
 <img class="img-fluid"  src="experiment/images/D_PID_Eq.png" alt=""><br>
+
 $$                   \tag{1} $$
 </div>
 </br>
+
 where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">e</span>[<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">k</span>] is the error, <span style="font-family:Sitka Text;font-style:italic">T<sub>s</sub></span> is the sampling time, 
 <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K<sub>p</sub></span>, 
 <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K<sub>i</sub></span>, and <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K<sub>d</sub></span> are are the controller gains. The design process involves selecting appropriate sampling rates, tuning the PID gains, and ensuring system stability and performance over discrete time steps.
@@ -44,10 +47,10 @@ $$ {x}[k+1]=F x[k]+g u[k] \tag{3a} $$
 
 Output equation:
 
-$$ y[k] = C x[k] \tag{3b} $$
+$$ y[k])= C x[k] \tag{3b} $$
 
 <div align="center">
-<img class="img-fluid"  src="./images/F_g.png" alt=""><br>
+<img class="img-fluid"  src="experiment/images/F_g.png" alt=""><br>
 </div>
 <b><i>Adding Integral State for PID Control:</i></b> <br>
 The integral state is defined as:<br/>
@@ -56,7 +59,6 @@ $$ x_3 [k+1]=x_3 [k]+T_s(r[k]-x_1 [k]) \tag{4} $$
 
 where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]</span> is the reference input, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub>[k]</span> is the position (<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ[k]</span>).
 <br/><br/>
-
 
 <b>Subject matter expertise | <b> **Prof. Alok Kanti Deb**
 :--|:--|
