@@ -373,8 +373,9 @@ function AddingIS(){
 			var bd2 = math.divide(math.round(math.multiply(math.add(math.multiply(ad21b,b1,Ts),math.multiply(ad22b,b2,Ts)),10000)),10000);
 			//var bd22 = math.divide(math.round(math.multiply(math.add(math.multiply(ad21b,b12,Ts),math.multiply(ad22b,b22,Ts)),10000)),10000);
 			
-			var ad13=ad23=ad32=bd3=0;
-			var ad31=-Ts;
+			var ad13=ad23=bd3=0;
+			var ad32=c12;//0;
+			var ad31=-c11;//-Ts;
 			var ad33=1;
 			
 			var mF = math.matrix([[ad11, ad12, ad13], [ad21, ad22, ad23],[ad31, ad32,ad33]]);
@@ -558,8 +559,9 @@ function CNTR(){
 			var bd2 = math.divide(math.round(math.multiply(math.add(math.multiply(ad21b,b1,Ts),math.multiply(ad22b,b2,Ts)),10000)),10000);
 			//var bd22 = math.divide(math.round(math.multiply(math.add(math.multiply(ad21b,b12,Ts),math.multiply(ad22b,b22,Ts)),10000)),10000);
 			
-			var ad13=ad23=ad32=bd3=0;
-			var ad31=-Ts;
+			var ad13=ad23=bd3=0;
+			var ad32=c12;//0;
+			var ad31=-c11;//-Ts;
 			var ad33=1;
 			
 			var mF = math.matrix([[ad11, ad12, ad13], [ad21, ad22, ad23],[ad31, ad32,ad33]]);
@@ -640,7 +642,7 @@ function CNTR(){
 			
 			document.getElementById('matQc').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">Q<sub>c</sub></span> =['+ bd1+',\t'+abd1+',\t'+aabd1+';\t\t'+bd2+','+abd2+',\t'+aabd2+';\t\t'+bd3+',\t'+abd3+',\t'+aabd3+']'
 			
-			var DQc= math.divide(math.round(math.multiply(math.det(Qc),1000)),1000);
+			var DQc=math.det(Qc);// math.divide(math.round(math.multiply(math.det(Qc),1000)),1000);
 			console.log(DQc);
 			//document.getElementById('RQc').value = 4;
 			//DQc=0;
@@ -747,6 +749,7 @@ function CNTR(){
 			  // document.getElementById("PID_v").innerHTML=PIDv;
 			   document.getElementById('PID_Controller').innerHTML = ' PID Values : \t K<sub>p</sub>\t=\t'+ k1+';\tK<sub>i</sub>\t=\t'+k3+';\tK<sub>d</sub>\t=\t'+k2+'';
 			   
+			   document.getElementById("plotA").style.visibility="visible";
 			   
 			}
 			   else 
@@ -757,6 +760,8 @@ function CNTR(){
 				   document.getElementById("Cntrl_Test2").innerHTML=Cntrl_Test2;
 				   document.getElementById("Cntrl_Test3").innerHTML=Cntrl_Test3;
 			   }
+			   
+			   
 		
 }
 function showRank(){
@@ -778,6 +783,7 @@ document.getElementById("Char_Eq").style.display="block";
 document.getElementById("Closed_loop_char").style.display="block";
 document.getElementById("Feedback_gain_Value_K").style.display="block";
 document.getElementById("PID_Controller").style.display="block";
+document.getElementById("plotBody").style.display = "block";
 }
 
 
@@ -804,3 +810,501 @@ function str(){
 
 
 
+function plotCNTR(){
+
+	
+	var dataOPPoints3=[];	///for plotting chart
+    var dataOPPoints4=[];
+	
+	
+	 
+	 var J = document.getElementById('J1').value;			
+			var B = document.getElementById('B1').value;
+			var K = document.getElementById('K1').value;
+           
+						
+	        var Ts = document.getElementById('Ts1').value;
+			
+			var P1 = document.getElementById('np1').value;			
+			var P2 = document.getElementById('np2').value;
+			var P3 = document.getElementById('np3').value;
+           
+		   var Zp1 = math.pow(math.e,math.multiply(Ts,P1));
+		   var Zp2 = math.pow(math.e,math.multiply(Ts,P2));
+		   var Zp3 = math.pow(math.e,math.multiply(Ts,P3));
+		   
+			var p1=Zp1;
+			var p2=Zp2;
+			var p3=Zp3;
+			
+						
+						
+		    var a22=math.divide(math.round(math.multiply(math.divide(-B,J),1000)),1000);
+						
+			var b2=math.divide(math.round(math.multiply(math.divide(K,J),1000)),1000);
+			
+						
+			var a11=a21=b1=c12=c13=d11=0;
+			var a12=c11=1;
+			
+			
+			
+			var mA = math.matrix([[a11, a12], [a21, a22]]);
+			var mB = math.matrix([[b1], [b2]]);
+			var mC = math.matrix([[c11], [c12], [c13]]);		
+							
+			
+			/* var ad11=ad33=1;
+			var ad12= Ts; 
+			
+			var ad13=ad21=ad23=ad32=bd1=bd3=0;
+			var ad31=-Ts;
+			
+			var ad22_1=math.divide(math.multiply(B,Ts),J);
+			var ad22_2=math.add(1,-ad22_1,);
+			var ad22=math.divide(math.round(math.multiply(ad22_2,1000)),1000);
+			var bd2=math.divide(math.round(math.multiply(math.divide(math.multiply(K,Ts),J),1000)),1000);
+			
+			var mF = math.matrix([[ad11, ad12, ad13], [ad21, ad22, ad23],[ad31, ad32,ad33]]);
+			var mg = math.matrix([[bd1], [bd2],[bd3]]); */
+			
+			///// for F matrix
+			var a1_11 = math.divide(math.round(math.multiply(math.multiply(a11,Ts),10000)),10000);
+			var a1_12 = math.divide(math.round(math.multiply(math.multiply(a12,Ts),10000)),10000);
+			var a1_21 = math.divide(math.round(math.multiply(math.multiply(a21,Ts),10000)),10000);
+			var a1_22 = math.divide(math.round(math.multiply(math.multiply(a22,Ts),10000)),10000);
+			
+			var a2_11 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a11,a11),math.multiply(a12,a21)),0.5,Ts,Ts),10000)),10000);
+			var a2_12 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a11,a12),math.multiply(a12,a22)),0.5,Ts,Ts),10000)),10000);
+			var a2_21 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a21,a11),math.multiply(a22,a21)),0.5,Ts,Ts),10000)),10000);
+			var a2_22 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a21,a12),math.multiply(a22,a22)),0.5,Ts,Ts),10000)),10000);
+			
+			var a3_11 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_11,a11),math.multiply(a2_12,a21)),0.3333,Ts),10000)),10000);
+			var a3_12 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_11,a12),math.multiply(a2_12,a22)),0.3333,Ts),10000)),10000);
+			var a3_21 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_21,a11),math.multiply(a2_22,a21)),0.3333,Ts),10000)),10000);
+			var a3_22 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_21,a12),math.multiply(a2_22,a22)),0.3333,Ts),10000)),10000);
+			
+			var a4_11 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_11,a11),math.multiply(a3_12,a21)),0.25,Ts),10000)),10000);
+			var a4_12 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_11,a12),math.multiply(a3_12,a22)),0.25,Ts),10000)),10000);
+			var a4_21 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_21,a11),math.multiply(a3_22,a21)),0.25,Ts),10000)),10000);
+			var a4_22 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_21,a12),math.multiply(a3_22,a22)),0.25,Ts),10000)),10000);
+			
+			var a5_11 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_11,a11),math.multiply(a4_12,a21)),0.2,Ts),10000)),10000);
+			var a5_12 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_11,a12),math.multiply(a4_12,a22)),0.2,Ts),10000)),10000);
+			var a5_21 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_21,a11),math.multiply(a4_22,a21)),0.2,Ts),10000)),10000);
+			var a5_22 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_21,a12),math.multiply(a4_22,a22)),0.2,Ts),10000)),10000);
+			
+			var a6_11 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_11,a11),math.multiply(a5_12,a21)),0.1667,Ts),10000)),10000);
+			var a6_12 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_11,a12),math.multiply(a5_12,a22)),0.1667,Ts),10000)),10000);
+			var a6_21 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_21,a11),math.multiply(a5_22,a21)),0.1667,Ts),10000)),10000);
+			var a6_22 = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_21,a12),math.multiply(a5_22,a22)),0.1667,Ts),10000)),10000);
+			
+			
+			var ad11 = math.divide(math.round(math.multiply(math.add(1,a1_11,a2_11,a3_11,a4_11,a5_11,a6_11),10000)),10000);
+			var ad12 = math.divide(math.round(math.multiply(math.add(a1_12,a2_12,a3_12,a4_12,a5_12,a6_12),10000)),10000);
+			var ad21 = math.divide(math.round(math.multiply(math.add(a1_21,a2_21,a3_21,a4_21,a5_21,a6_21),10000)),10000);
+			var ad22 = math.divide(math.round(math.multiply(math.add(1,a1_22,a2_22,a3_22,a4_22,a5_22,a6_22),10000)),10000);
+			
+			///// for g matrix
+			
+			var a1_11b = math.divide(math.round(math.multiply(math.multiply(a11,Ts,0.5),10000)),10000);
+			var a1_12b = math.divide(math.round(math.multiply(math.multiply(a12,Ts,0.5),10000)),10000);
+			var a1_21b = math.divide(math.round(math.multiply(math.multiply(a21,Ts,0.5),10000)),10000);
+			var a1_22b = math.divide(math.round(math.multiply(math.multiply(a22,Ts,0.5),10000)),10000);
+			
+			var a2_11b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a11,a11),math.multiply(a12,a21)),0.1667,Ts,Ts),10000)),10000);
+			var a2_12b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a11,a12),math.multiply(a12,a22)),0.1667,Ts,Ts),10000)),10000);
+			var a2_21b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a21,a11),math.multiply(a22,a21)),0.1667,Ts,Ts),10000)),10000);
+			var a2_22b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a21,a12),math.multiply(a22,a22)),0.1667,Ts,Ts),10000)),10000);
+			
+			var a3_11b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_11b,a11),math.multiply(a2_12b,a21)),0.25,Ts),10000)),10000);
+			var a3_12b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_11b,a12),math.multiply(a2_12b,a22)),0.25,Ts),10000)),10000);
+			var a3_21b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_21b,a11),math.multiply(a2_22b,a21)),0.25,Ts),10000)),10000);
+			var a3_22b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a2_21b,a12),math.multiply(a2_22b,a22)),0.25,Ts),10000)),10000);
+			
+			var a4_11b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_11b,a11),math.multiply(a3_12b,a21)),0.2,Ts),10000)),10000);
+			var a4_12b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_11b,a12),math.multiply(a3_12b,a22)),0.2,Ts),10000)),10000);
+			var a4_21b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_21b,a11),math.multiply(a3_22b,a21)),0.2,Ts),10000)),10000);
+			var a4_22b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a3_21b,a12),math.multiply(a3_22b,a22)),0.2,Ts),10000)),10000);
+			
+			var a5_11b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_11b,a11),math.multiply(a4_12b,a21)),0.1667,Ts),10000)),10000);
+			var a5_12b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_11b,a12),math.multiply(a4_12b,a22)),0.1667,Ts),10000)),10000);
+			var a5_21b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_21b,a11),math.multiply(a4_22b,a21)),0.1667,Ts),10000)),10000);
+			var a5_22b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a4_21b,a12),math.multiply(a4_22b,a22)),0.1667,Ts),10000)),10000);
+			
+			var a6_11b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_11b,a11),math.multiply(a5_12b,a21)),0.1428,Ts),10000)),10000);
+			var a6_12b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_11b,a12),math.multiply(a5_12b,a22)),0.1428,Ts),10000)),10000);
+			var a6_21b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_21b,a11),math.multiply(a5_22b,a21)),0.1428,Ts),10000)),10000);
+			var a6_22b = math.divide(math.round(math.multiply(math.multiply(math.add(math.multiply(a5_21b,a12),math.multiply(a5_22b,a22)),0.1428,Ts),10000)),10000);
+			
+			var ad11b = math.divide(math.round(math.multiply(math.add(1,a1_11b,a2_11b,a3_11b,a4_11b,a5_11b,a6_11b),10000)),10000);
+			var ad12b = math.divide(math.round(math.multiply(math.add(a1_12b,a2_12b,a3_12b,a4_12b,a5_12b,a6_12b),10000)),10000);
+			var ad21b = math.divide(math.round(math.multiply(math.add(a1_21b,a2_21b,a3_21b,a4_21b,a5_21b,a6_21b),10000)),10000);
+			var ad22b = math.divide(math.round(math.multiply(math.add(1,a1_22b,a2_22b,a3_22b,a4_22b,a5_22b,a6_22b),10000)),10000);
+			
+			var bd1 = math.divide(math.round(math.multiply(math.add(math.multiply(ad11b,b1,Ts),math.multiply(ad12b,b2,Ts)),10000)),10000);
+			//var bd12 = math.divide(math.round(math.multiply(math.add(math.multiply(ad11b,b12,Ts),math.multiply(ad12b,b22,Ts)),10000)),10000);
+			var bd2 = math.divide(math.round(math.multiply(math.add(math.multiply(ad21b,b1,Ts),math.multiply(ad22b,b2,Ts)),10000)),10000);
+			//var bd22 = math.divide(math.round(math.multiply(math.add(math.multiply(ad21b,b12,Ts),math.multiply(ad22b,b22,Ts)),10000)),10000);
+			
+			var ad13=ad23=bd3=0;
+			var ad32=c12;//0;
+			var ad31=-c11;//-Ts;
+			var ad33=1;
+			
+			var mF = math.matrix([[ad11, ad12, ad13], [ad21, ad22, ad23],[ad31, ad32,ad33]]);
+			var mg = math.matrix([[bd1], [bd2],[bd3]]);
+			
+			var mC= math.matrix([[c11, c12, c13]]);
+			
+			var aad11= ad11*ad11+ad12*ad21+ad13*ad31;
+			var aad12= ad11*ad12+ad12*ad22+ad13*ad32;
+			var aad13= ad11*ad13+ad12*ad23+ad13*ad33;
+			
+		
+			var aad21= ad21*ad11 +ad22*ad21 +ad23*ad31 ;
+			var aad22= ad21*ad12 +ad22*ad22 +ad23*ad32 ;
+			var aad23= ad21*ad13 +ad22*ad23 +ad23*ad33 ;
+			
+			
+			var aad31= ad31*ad11 +ad32*ad21 +ad33*ad31 ;
+			var aad32= ad31*ad12 +ad32*ad22 +ad33*ad32 ;
+			var aad33= ad31*ad13 +ad32*ad23 +ad33*ad33 ;
+			
+			
+			
+			
+			///////////////////////////////////////////
+			
+			var aad11= ad11*ad11+ad12*ad21+ad13*ad31;
+			var aad12= ad11*ad12+ad12*ad22+ad13*ad32;
+			var aad13= ad11*ad13+ad12*ad23+ad13*ad33;
+			
+		
+			var aad21= ad21*ad11 +ad22*ad21 +ad23*ad31 ;
+			var aad22= ad21*ad12 +ad22*ad22 +ad23*ad32 ;
+			var aad23= ad21*ad13 +ad22*ad23 +ad23*ad33 ;
+			
+			
+			var aad31= ad31*ad11 +ad32*ad21 +ad33*ad31 ;
+			var aad32= ad31*ad12 +ad32*ad22 +ad33*ad32 ;
+			var aad33= ad31*ad13 +ad32*ad23 +ad33*ad33 ;
+			
+			
+			
+			
+			//////////////////////////////////////////////
+			
+			var abd1= math.divide(math.round(math.multiply(bd1*ad11 +bd2*ad12 +bd3*ad13 ,1000)),1000);
+			var abd2= math.divide(math.round(math.multiply(bd1*ad21 +bd2*ad22 +bd3*ad23 ,1000)),1000);
+			var abd3= math.divide(math.round(math.multiply(bd1*ad31 +bd2*ad32 +bd3*ad33 ,1000)),1000);
+			
+			
+			////////////////////////////////////////////////
+			
+			var aabd1= math.divide(math.round(math.multiply(bd1*aad11 +bd2*aad12 +bd3*aad13 ,1000)),1000);
+			var aabd2= math.divide(math.round(math.multiply(bd1*aad21 +bd2*aad22 +bd3*aad23 ,1000)),1000);
+			var aabd3= math.divide(math.round(math.multiply(bd1*aad31 +bd2*aad32 +bd3*aad33 ,1000)),1000);
+			
+			
+			/////////////////////////////////////////////
+			
+			
+			
+			
+			//////////////////////////////////////////////
+			var ga= math.matrix([bd1, bd2, bd3 ]);
+			var Faga= math.matrix([abd1,abd2, abd3 ]);
+			var FaFaga= math.matrix([aabd1, aabd2, aabd3]);
+						
+			document.getElementById('matQcg').innerHTML = '<span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> ='+ ga;
+			document.getElementById('matQcFg').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">F<sub>a</sub></span><span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> ='+ Faga;
+			document.getElementById('matQcFFg').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">F<sub>a</sub></span><sup>2</sup><span style="font-family:calibri;font-style:italic;font-size:18px">g<sub>a</sub></span> ='+ FaFaga;
+			
+			
+			//var Qc1= math.matrix([[0, 1.818, -0.331, 12.209], [1.818, -0.331, 12.209, -4.433], [0, 4.545, -0.827, 141.873], [4.545, -0.827, 141.873, -31.349]]);
+			//var DQc1=math.det(Qc1);
+			//console.log(DQc1);
+			
+			var Qc= math.matrix([[bd1, abd1, aabd1],[bd2, abd2, aabd2],[bd3, abd3, aabd3]]);
+			
+			document.getElementById('matQc').innerHTML = ' <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">Q<sub>c</sub></span> =['+ bd1+',\t'+abd1+',\t'+aabd1+';\t\t'+bd2+','+abd2+',\t'+aabd2+';\t\t'+bd3+',\t'+abd3+',\t'+aabd3+']'
+			
+			var DQc=math.det(Qc);// math.divide(math.round(math.multiply(math.det(Qc),1000)),1000);
+			console.log(DQc);
+			//document.getElementById('RQc').value = 4;
+			//DQc=0;
+			
+			if (DQc!=0)
+			{  Cntrl_Test1=" Rank is 3";			   
+			   Cntrl_Test2="Determinent is " +DQc+ "";				    
+			   Cntrl_Test3=" System is completely controllable";
+			   document.getElementById("Cntrl_Test1").innerHTML=Cntrl_Test1;
+			   document.getElementById("Cntrl_Test2").innerHTML=Cntrl_Test2;
+			   document.getElementById("Cntrl_Test3").innerHTML=Cntrl_Test3;
+			   
+			   var p123 = math.multiply(p1,p2,p3);
+			   
+			   var p12 = math.multiply(p1,p2);
+			   var p13 = math.multiply(p1,p3);
+			   var p23 = math.multiply(p2,p3);
+			   
+			   /* var k2 = math.divide(math.round(math.multiply(math.divide(math.add(p1,p2,p3,ad22,2),bd2),1000)),1000);
+			   console.log(k2);
+			   var k1 = math.divide(math.round(math.multiply(math.divide(math.add(p12,p23,p13,-ad22,-ad22,-1,math.multiply(2,bd2,k2)),math.multiply(ad12,bd2)),1000)),1000);
+			   console.log(k1);
+			   var k3 = math.divide(math.round(math.multiply(math.divide(math.add(-p123,-ad22,-math.multiply(ad12,bd2,k1),math.multiply(bd2,k2)),math.multiply(ad12,ad31,bd2)),1000)),1000);
+			   
+			   console.log(k3); */
+			   
+			   //var k1 = math.divide(p1p2p3p4, math.add(a23b4,-a43b2));
+			   
+			   
+			   var coeff = [ [ bd1, bd2, 0],[math.add(math.multiply(ad12,bd2),-math.multiply(bd1,ad22),-bd1), -math.multiply(2,bd2), math.multiply(ad31,bd1)],[math.add(math.multiply(ad22,bd1),-math.multiply(ad12,bd2)),bd2,math.add(math.multiply(ad12,bd2,ad31),-math.multiply(ad31,bd1,ad22))] ];
+			   var cont = [math.add(ad22,-p1,-p2,-p3,2), math.add(math.multiply(p1,p2),math.multiply(p1,p3),math.multiply(p2,p3),-math.multiply(2,ad22),-1), math.add(ad22,-math.multiply(p1,p2,p3))];
+			   var sol = math.lusolve(coeff,cont);
+			   
+			   var k1 = math.divide(math.round(math.multiply(sol[0][0],1000)),1000);
+			   var k2 = math.divide(math.round(math.multiply(sol[1][0],1000)),1000);
+			   var k3 = math.divide(math.round(math.multiply(sol[2][0],1000)),1000);
+			   
+			   
+			   
+			   console.log(k1);
+			   console.log(k2);
+			   console.log(k3);
+			   
+			   
+			  /* K1="Feedback gain k1 = " +k1+ "";
+			   
+			   document.getElementById("Feedback_gain_Value1").innerHTML=K1;
+			   
+			   K2="Feedback gain k2 = " +k2+ "";
+			   
+			   document.getElementById("Feedback_gain_Value2").innerHTML=K2;
+			   
+			   K3="Feedback gain k3 = " +k3+ "";
+			   
+			   document.getElementById("Feedback_gain_Value3").innerHTML=K3;
+			   
+			   
+			   K4="Feedback gain k4 = " +k4+ "";
+			   
+			   document.getElementById("Feedback_gain_Value4").innerHTML=K4; */
+			   
+			   var Ka = math.matrix([[ k1, k2, k3]]);
+			   
+			   console.log(Ka);
+			  			  			   
+			}
+			   else 
+			   {   Cntrl_Test1=" Rank < n = 3";
+		           Cntrl_Test2="Determinent is " +DQc+ "";		
+			       Cntrl_Test3=" System is not controllable";
+			       document.getElementById("Cntrl_Test1").innerHTML=Cntrl_Test1;
+				   document.getElementById("Cntrl_Test2").innerHTML=Cntrl_Test2;
+				   document.getElementById("Cntrl_Test3").innerHTML=Cntrl_Test3;
+			   }
+		
+		var N=500;
+			var maxt= math.multiply(math.add(N,-1),Ts);
+			var mint = 0;
+	
+            var yop = new Array();	///continous data output result storing
+	        var disp = [];
+	        var vel = [];
+	
+	        var x1_up ;
+	        var x2_up ;
+			var x3_up ;
+			
+			var x1_up1 = 0;//1;
+	        var x2_up1 = 0;
+			var x3_up1 = 0;
+			
+			var y1_up = 0;
+			var y2_up = 0;
+            var y3_up = 0;	
+            
+			var r =1;
+            		
+	
+           	var	t = mint;
+          	while(t<=maxt){
+        	
+			console.log(x1_up1);
+			console.log(x2_up1);
+			console.log(x3_up1);
+			
+			console.log(ad11);
+			console.log(ad12);
+			console.log(ad21);
+			console.log(ad22);
+			
+			console.log(bd1);
+			console.log(bd2);
+			
+			console.log(k1);
+			console.log(k2);
+			console.log(k3);
+			var r =1;
+			disp[t] = x1_up1;//y1_up;
+			dataOPPoints3.push({x:(t), y:(disp[t])});///displacement part
+	        dArray3 = dataOPPoints3;
+			
+			vel[t] = x2_up1;//y2_up;
+			dataOPPoints4.push({x:(t), y:(vel[t])});///velocity part
+	        dArray4 = dataOPPoints4;
+			
+		    /* x1_up = math.add(math.multiply(math.add(ad11,-math.multiply(bd1,k1)),x1_up1),math.multiply(math.add(ad12,-math.multiply(bd1,k2)),x2_up1),math.multiply(math.add(ad13,-math.multiply(bd1,k3)),x3_up1));//,math.multiply(bd1,va));
+			x2_up = math.add(math.multiply(math.add(ad21,-math.multiply(bd2,k1)),x1_up1),math.multiply(math.add(ad22,-math.multiply(bd2,k2)),x2_up1),math.multiply(math.add(ad23,-math.multiply(bd2,k3)),x3_up1));//,math.multiply(bd2,va));
+			x3_up = math.add(math.multiply(math.add(ad31,-math.multiply(bd3,k1)),x1_up1),math.multiply(math.add(ad32,-math.multiply(bd3,k2)),x2_up1),math.multiply(math.add(ad33,-math.multiply(bd3,k3)),x3_up1));
+			 */
+			/* x1_up = math.add(math.multiply(math.add(ad11,math.multiply(bd1,k3),-math.multiply(bd1,k1)),x1_up1),math.multiply(math.add(ad12,-math.multiply(bd1,k2)),x2_up1),math.multiply(math.add(ad13,-math.multiply(bd1,k3)),x3_up1),-math.multiply(bd1,k3,r));//,math.multiply(bd1,va));
+			x2_up = math.add(math.multiply(math.add(ad21,math.multiply(bd2,k3),-math.multiply(bd2,k1)),x1_up1),math.multiply(math.add(ad22,-math.multiply(bd2,k2)),x2_up1),math.multiply(math.add(ad23,-math.multiply(bd2,k3)),x3_up1),-math.multiply(bd2,k3,r));//,math.multiply(bd2,va));
+			x3_up = math.add(math.multiply(math.add(ad31,math.multiply(bd3,k3),-math.multiply(bd3,k1)),x1_up1),math.multiply(math.add(ad32,-math.multiply(bd3,k2)),x2_up1),math.multiply(math.add(ad33,-math.multiply(bd3,k3)),x3_up1),-math.multiply(bd3,k3,r));
+			 */
+			
+			x1_up = math.add(math.multiply(math.add(ad11,math.multiply(bd1,k3),-math.multiply(bd1,k1)),x1_up1),math.multiply(math.add(ad12,-math.multiply(bd1,k2)),x2_up1),-math.multiply(bd1,k3,x3_up1),-math.multiply(bd1,k3,r));//,math.multiply(bd1,va));
+			x2_up = math.add(math.multiply(math.add(ad21,math.multiply(bd2,k3),-math.multiply(bd2,k1)),x1_up1),math.multiply(math.add(ad22,-math.multiply(bd2,k2)),x2_up1),-math.multiply(bd2,k3,x3_up1),-math.multiply(bd2,k3,r));//,math.multiply(bd2,va));
+			x3_up = math.add(x3_up1,r,-x1_up1);
+			
+			
+			
+			 x1_up1 = x1_up ;
+	         x2_up1 = x2_up ; 
+			 x3_up1 = x3_up ; 
+			
+			
+			console.log(x1_up);
+			console.log(x2_up);
+			console.log(x3_up);
+			
+			t=math.add(t,Ts);
+			}
+			
+document.getElementById('plotbucket').style.display  = "block"; 
+ 
+document.getElementById('chartContainer1').style.display  = "block"; 	
+	var chart1 = new CanvasJS.Chart("chartContainer1",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "Closed Loop Response with PID Controller (Position vs Samples) "
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Samples",
+		//logarithmic:true,
+		maximum:maxt,
+		minimum:mint,
+      },
+    axisY: 
+	      {/////output Y axis
+		  //logarithmic: true,
+            title: "Position (m)",
+			
+			///maximum:0.3,
+        },
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"#ed2c4e",
+        dataPoints:dataOPPoints3
+	
+       }]
+       
+	});
+
+	chart1.render();	
+	document.getElementById("exportChart").style.display = "block";
+	
+/* document.getElementById('chartContainer2').style.display  = "block"; 	
+	var chart2 = new CanvasJS.Chart("chartContainer2",
+    {
+      animationEnabled: true,
+	  zoomEnabled:true,
+	  zoomType: "xy",
+		  animationDuration: 10000, 
+	  title:{
+      text: "State Feedback Response (Velocity vs Samples) "
+	  
+      },
+	  
+	  axisX:{
+        interlacedColor: "#dddbdb",
+        title: "Samples",
+		//logarithmic:true,
+		maximum:maxt,
+		minimum:mint,
+      },
+    axisY: 
+	      {/////output Y axis
+		  //logarithmic: true,
+            title: "Velocity (rad/s)",
+			
+			///maximum:0.3,
+        },
+		
+	data:[ 
+      {        
+        type: "spline",
+		color:"109DB6",
+        dataPoints:dataOPPoints4
+	
+       }]
+       
+	});
+
+	chart2.render();
+	document.getElementById("exportChart").style.display = "block"; */
+	
+	if(isPlotted1==true && isPlotted2==true){
+		document.getElementById('CompB').style.visibility = "visible";
+	}
+
+}
+		
+		
+		
+///code for downloading the plot area
+
+function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+
+function saveImg(){
+html2canvas(document.querySelector('#plotbucket')).then(function(canvas) {
+
+        saveAs(canvas.toDataURL(), 'Plot.png');
+    }); 
+	
+	
+}
