@@ -9,10 +9,10 @@
 The DC motor dynamics are represted by the following equations: <br/>
 <b><i>Mechanical equation:</i></b> <br>
 
-$$ J\ddot{\theta}(t)+b{\dot\theta}(t)=K u(t)  \tag{1}$$
+$$ J\ddot{\theta}(t)+b{\dot\theta}(t)=K V(t)  \tag{1}$$
 
 where,
-<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">J</span> is the motor inertia, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">b</span> is the damping coefficient, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span> is the motor constant, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ(t)</span> is the angular position of the motor, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span> is the input voltage (control input). 
+<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">J</span> is the motor inertia, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">b</span> is the damping coefficient, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span> is the motor constant, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ(t)</span> is the angular position of the motor, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">V(t)</span> is the input voltage (control input <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span>). 
 <br/><br/>
 
 <b><i>Electrical equation:</i></b> <br>
