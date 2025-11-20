@@ -1216,6 +1216,8 @@ document.getElementById('chartContainer1').style.display  = "block";
       {        
         type: "spline",
 		color:"#ed2c4e",
+		showInLegend:true,
+		legendText:"(Sampling Time (Ts) = "+ Ts +")",
         dataPoints:dataOPPoints3
 	
        }]
