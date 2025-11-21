@@ -1,13 +1,537 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<!-- This HTML page and script files are developed by
+   Kamal Sandeep Karreddula
+    Research Scholar,
+    Electrical Engineering Department,
+    IIT Kharagpur.
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
-</html>
+   Piyali Chattopadhyay
+    Project Scientist-Technical,
+    Virtual Labs IIT Kharagpur.-->
+
+<!DOCTYPE html>
+<html lang="en"><!--html tag start-->
+<head>
+    <title> Design of a Discrete PID Controller for a DC Motor </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/adik.css" rel="stylesheet">
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!--<script  src="./js/TC.js">   </script>-->
+ 
+  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>-->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.min.js  "></script>
+ 
+  <script  src="./js/DS.js"> </script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+
+<link rel="stylesheet" href="./css/TC.css">
+
+	
+
+
+  <style>
+	.bluedot{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:blue;
+    background-image:linear-gradient(90deg,#0066ff,#00ccff);
+	box-shadow: 5px 5px 8px #888888;
+	}
+	.handlep{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/plus.png);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	.handlen{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/minus.jpg);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	canvas {	
+	max-width:100%;
+	}
+	
+	@media print {
+  body {
+    visibility: hidden;
+  }
+  #plotbucket {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+	
+	
+	
+  </style>
+  
+  
+  
+</head>
+<body><!--body tag start-->
+    <div class="container p-3 my-3 text-primary text-center border"><!--First Container under body tag start-->
+        <div class="row"><!--First row under 1st container start-->
+            <div class="col-md-3"><!--First col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/vlabs.png" alt="VLabs logo">
+            </div><!--First col under 1st row end-->
+            <div class="col-md-6"><!--2nd col under 1st row start-->
+                <p class="display-1"> <b> Virtual Labs <br> IIT Kharagpur </b> </p>
+            </div><!--2nd col under 1st row end-->
+            <div class="col-md-3"><!--3rd col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/iitkgp.png" alt="IIT KGP Logo" >
+            </div><!--3rd col under 1st row end-->
+        </div><!--First row under 1st container end-->
+    
+        <hr>
+        <div class="row"><!--2nd row under 1st container start-->
+            <div class="col-md-3"><!--First col under 2nd row start-->
+
+            </div><!--First col under 2nd row end-->
+            <div class="col-md-6"><!--2nd col under 2nd row start-->
+                <p class="h1"> <b> Design of a Discrete PID Controller for a DC Motor </b> </p>
+            </div><!--2nd col under 2nd row end-->
+            <div class="col-md-3"><!--3rd col under 2nd row start-->
+
+            </div><!--3rd col under 2nd row end-->
+        </div><!--2nd row under 1st container end-->
+        <hr>
+        <div class="d-flex p-1 text-primary"><!--3rd row under 1st container start-->
+          <div class="p-1" > <p class="h4"><a href="../index.html"> <span class="LN"> <b> Digital Control Laboratory </b></span> --> </a></p></div>
+          <div class="p-1"> <p class="h4"><a href="./index.html"> <span class="ExpN"> <b> Design of a Discrete PID Controller for a DC Motor </b> </span> </a></p></div>
+        </div><!--3rd row under 1st container end-->
+    </div><!--First Container under body tag end-->
+    
+    <div class="container p-3 my-5 text-primary text-center border"><!--2nd Container under body tag start-->
+        <div class="row"><!--First row under 2nd container start-->
+
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item">
+                  <a class="nav-link" href="../index.html">Introduction</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../aim.html">Objective</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../prequiz.html">Pre Quiz</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../theory.html">Theory</a>
+                </li>
+				<li class="nav-item">
+                  <a class="nav-link" href="../procedure.html">Procedure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./index.html">Simulation</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../postquiz.html">Post Quiz</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="../feedback.html">Feedback</a>
+                  </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="../references.html">References</a>
+                  </li>
+
+              </ul>
+        </div><!--First row under 2nd container end-->
+    </div><!--2nd Container under body tag end-->
+	
+    <div class="container p-3 my-5 text-left border"><!--3rd Container under body tag start-->
+      <div class="row"><!--First row under 3rd container start-->
+        <div class="col-md-1"></div><!--First col under 3rd container start& end-->
+        <div class="col-md-10"><!--2nd col under 3rd container start-->
+            <p class="text-center bg-success"> <a class="nav-link" data-bs-toggle="tab"  id="instcontrol" style="background-color:#128BD9"  ><span class=" h3 text-dark"> Instructions </span></a>
+              <ol id="inst" style="display:block;height:200px;overflow-y:auto;text-align:justify">
+                      <li> Enter the values of the DC motor parameters. Note: Default values are already given. </li></br>
+  
+					  <li> Click on 'State Space Model' button to get the state space form of the system. </li><br/>
+					  
+					  <li> Click on ' Adding Integral State for PID control' button to get the augmented matrices. </li><br/> 
+					  
+					  <li> Click on ' Enter the desired pole location' button to enter desired pole values. </li><br/> 
+					 
+					 <li> Enter the desired negative pole values (in s domain). </li><br/> 
+					 
+					 <li> Clicking on 'Design' dropdown-menu to select the type of the design.</li><br/>
+
+					 <li> Click on the desired option to select the required type of the design. </li><br/> 
+					 
+					 <li> Click on the 'Run' button to run the selected design. </li><br/>
+					 
+					 <li> Click on the 'Rank' or 'Determinant'  or "Inference' or 'Gain Values' buttons to get the controllability test information and state feedback gain values. </li><br/>
+					 
+					 <li> Click on the 'Closed Loop Response' button to get the plot. </li><br/>
+					 
+					 <li> Click on 'Download' button to download the plot.</li><br/> 
+					 
+					 					 
+					 <li> Click on 'Clear' button to enter the new values of quantities.</li><br/>
+					  
+					 
+					 
+
+					
+						 
+		   </ol>
+            </p> 
+          </div><!--2nd col under 3rd container end-->
+		  
+        <div class="col-md-1"></div><!--3rd col under 3rd container start& end-->
+      </div><!--First row under 3rd container end-->
+    </div><!--3rd Container under body tag end-->
+	
+    <div class="container p-3 my-5 text-center border" id="canvas" ><!--Fourth container under body tag start-->
+	
+	<div class="row my-5 gy-2">
+	
+	<div class="col-md-12">
+	       
+		   <div id = "tf1" class="card" style="display:block;width:100%;background-color:none">
+		   <div class="card-body">
+		    <div align="center">
+						  <img class="img-fluid"  src="./images/DC Motor.png" alt=""><br>        
+                          <figcaption style="color:black"> Fig.1. DC Motor Model </figcaption>						  
+						  </div><br/>			        
+					<b><i>The DC motor dynamics:</i></b> <br>
+			<!-- <div   class="img-container"> -->		
+            The DC motor dynamics are represted by the following equation:
+			
+					$$ J\ddot{\theta}(t)+b{\dot\theta}(t)=K V(t)  $$
+			where,
+			<span style="font-family:Bodoni MT;font-style:italic;font-size:18px">J</span> is the motor inertia, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">b</span> is the damping coefficient, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span> is the motor constant, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ(t)</span> is the angular position of the motor, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">V(t)</span> is the input voltage (control input <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span>). 
+			<br/><br/>
+			Enter the values of the following quantities: <br/><br/>
+			<!--<img class = "img-fluid" src="./images/Continuous_System.png" class="img-fluid" > <br/></br>-->
+			
+			<span style="position:absolute;left:40%">Motor inertia :  <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">J</span></span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="J1" min="0.1" value="0.5" max="1" step="0.05" style="text-align:center" ></span><br/></br>
+			<span style="position:absolute;left:40%">Damping ratio : <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">b</span></span>  <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="B1" min="0.1" value="0.2" max="1" step="0.05" style="text-align:center" ></span><br/></br>
+			<span style="position:absolute;left:40%">Motor constant :  <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">K</span></span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="K1" min="0.01" value="0.1" max="1" step="0.01" style="text-align:center" ></span><br/></br>
+			
+			<span style="position:absolute;left:40%">Sampling Time (sec) :  <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">T<sub>s</sub></span></span> <span style="position:absolute;left:54%">= &nbsp;<input type="number" id="Ts1" min="0.01" value="0.1" max="1" step="0.01" style="text-align:center" ></span><br/></br>
+           where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">T<sub>s</sub></span> is the sampling time. <br/></br>
+		 <!--  Length to pendulum center of mass : l (m) = &nbsp;<input type="number" id="l1" min="0.1" value="0.3" max="1" step="0.05" style="width:25%" ><br/></br>	
+            Mass moment of inertia of the pendulum : I (kg.m^2) = &nbsp;<input type="number" id="I1" min="0.001" value="0.006" max="1" step="0.001" style="width:25%" ><br/></br>  -->
+            
+			
+			
+			<button class="btn btn-success" id ="run" onclick="system()">State Space Model</button>
+			
+			
+			
+			</div></div>
+			
+			<div id="tfbody" class="card border-0" style="display:none; width:100%;background-color:none;min-width:1000px;">
+			<br/>			
+			<span class="card-text "><b> State Space Model of the DC Motor</b></span><br/>	
+            <img class = "img-fluid" src="./images/DC_Motor_SS_Model.png" class="img-fluid" > 
+			
+			<!--<span class="card-text" ><b style="position:absolute;width: 6%;left:45%;top: 75%;">$$ \frac{-b}{J} = $$ </b> &nbsp;&nbsp; <input type="number" id="a_22" value="0" readonly=readonly style="position:absolute;width: 10%;left:50%;top: 80%;"></span> 
+            
+			<span class="card-text" ><b style="position:absolute;width: 6%;left:45%;top: 95%;">$$ \frac{K}{J} = $$ </b> &nbsp;&nbsp; <input type="number" id="b_2" value="0" readonly=readonly style="position:absolute;width: 10%;left:50%;top: 101%;"></span>			
+			-->
+			<!--<span id="C_SS_M" style="display:none"></span>-->
+			<span class="card-text" id="matA" style="position:absolute;left:5%;top: 120%;"></span> 
+			<span class="card-text" id="matB" style="position:absolute;left:5%;top: 130%;"></span>
+			<span class="card-text" id="matC" style="position:absolute;left:5%;top: 140%;"></span>
+			<span class="card-text" id="matD" style="position:absolute;left:5%;top: 150%;"></span>
+			
+			<!--<span class="card-text" id="EigenValues" style="position:absolute;left:5%;top: 160%;"></span>-->
+			<!--<span id="D_SS_M" style="display:none"></span>-->
+			<span class="card-text" id="matAd" style="position:absolute;left:5%;top: 170%;"></span> 
+			<span class="card-text" id="matBd" style="position:absolute;left:5%;top: 180%;"></span>
+			
+			
+			</div>
+			
+			<div class="row my-5 gy-2">
+	        <div class="col-md-12">	</div>
+	        <img  src="./images/SS_Pendulum_Cart.png" style="visibility:hidden;width:30%;height:10%" >
+	        </div>
+			<!--<script>
+			var outputText1;
+			var outputText2;
+			var roots=[];
+            var b0 = document.getElementById('b_0').value;
+			var b1 = document.getElementById('b_1').value;
+			var b2 = document.getElementById('b_2').value;
+			var a0 = document.getElementById('a_0').value;
+			var a1 = document.getElementById('a_1').value;
+			var a2 = document.getElementById('a_2').value;
+			var T = document.getElementById('Ts').value;
+			
+			function system(){
+			
+			outputText1=" G(s)= ("+b0+"s\u00B2+"+b1+"s+"+b2+ ") / (" +a0+"s<sup>2</sup>+"+a1+"s+"+a2+ ")";//+b0+"s\u00B2+"+b1+"s+"+b2+;
+			outputText2=" b0="+b0+";  b1="+b1+"; b2="+b2+ "; a0="+a0+";  a1="+a1+";  a2="+a2+ "";
+			document.getElementById("output_text1").innerHTML=outputText1;
+			document.getElementById("output_text2").innerHTML=outputText2;
+			
+						
+			}
+			</script> -->
+			
+			
+			
+			<!--<p id="output_text1"/>
+			<p id="output_text2"/>-->
+			
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<button class="btn btn-success" id ="run11" onclick="AddingIS()" style="visibility:hidden">Adding Integral State for PID control</button>
+			<div id="tfbody1" class="card border-0" style="display:none; width:100%;background-color:none">
+			<br/><br/>
+			<br/>			
+			<span class="card-text "><b> Adding Integral State for PID control</b></span><br/>	
+            <img class = "img-fluid" src="./images/Modified_DC_Motor_SS_Model.png" class="img-fluid" > 
+			
+			<!--<span class="card-text" ><b style="position:absolute;width: 6%;left:45%;top: 75%;">$$ \frac{-b}{J} = $$ </b> &nbsp;&nbsp; <input type="number" id="a_22" value="0" readonly=readonly style="position:absolute;width: 10%;left:50%;top: 80%;"></span> 
+            
+			<span class="card-text" ><b style="position:absolute;width: 6%;left:45%;top: 95%;">$$ \frac{K}{J} = $$ </b> &nbsp;&nbsp; <input type="number" id="b_2" value="0" readonly=readonly style="position:absolute;width: 10%;left:50%;top: 101%;"></span>			
+			-->
+			
+			<span class="card-text" id="matAad" style="position:absolute;left:5%;top: 120%;"></span> 
+			<span class="card-text" id="matBad" style="position:absolute;left:5%;top: 130%;"></span>
+						
+
+			
+			</div>
+			
+			<br><br><br><br><br><br><br><br><br><br><br><br>
+			<button class="btn btn-success" id ="run1" onclick="EP()" style="visibility:hidden">Enter the desired pole location</button>				
+			
+			<div id="tfbody11" class="card border-0" style="display:none; width:100%;background-color:none">
+			<br/><br/>
+			<span class="card-text "><b>Enter the desired negative pole values (in s domain):</b></span><br/>
+						
+			 <br/><br/>
+						
+			Pole 1 :  P1 = <input type="number" id="np1" min="-500" value="-1" max="0" step="0.05" style="position:absolute;width:10%; text-align:center" ><br/></br>
+			Pole 2 :  P2 = <input type="number" id="np2" min="-500" value="-2" max="0" step="0.05" style="position:absolute;width:10%; text-align:center" ><br/></br>
+			Pole 3 :  P3 = <input type="number" id="np3" min="-500" value="-3" max="0" step="0.05" style="position:absolute;width:10%; text-align:center" ><br/></br>
+		<!--	Pole 4 :  P4 = <input type="number" id="np4" min="-500" value="-4" max="0" step="0.05" style="position:absolute;width:25%" ><br/></br> -->
+			
+						
+			<p id="Pole_Value1"/>
+			<p id="Pole_Value2"/>
+			<p id="Pole_Value3"/>
+			<!-- <p id="Pole_Value4"/> -->
+			
+			</div>
+            			  
+			
+			</div>
+			<br/>
+			
+			
+			
+			<br/>
+			
+			
+			
+			<!--	<div class="row my-5 gy-2">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+	
+			
+			
+				<!--//<button class="btn btn-success" id ="run" onclick="ZOH_mag();ZOH_ph()">ZOH</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_fr()">FOH Freq. Resp.</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_bode()">FOH bode</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade1_fr()">FOH pade1 Freq.Resp.</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade1_bode()">FOH pade1 bode</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade2_fr()">FOH pade2 Freq.Resp.</button>-->
+				<!--<button class="btn btn-success" id ="run" onclick="FOH_pade2_bode()">FOH pade2 bode</button>-->
+				<!--<button class="btn btn-danger" id ="clr" onclick="refresh()" >Clear</button>-->
+	
+	<!--</div>
+	<div class="col-md-1"></div>
+	</div>-->
+	</div>
+	<div class="row my-5 gy-2">
+	<div class="col-md-12">	</div>
+	<img  src="./images/SS_Pendulum_Cart.png" style="visibility:hidden; width:5%;height:5%" >
+	</div>
+<div class="row my-5 gy-2">
+	
+	<div class="col-md-12">	
+	 <div class="d-inline-flex p-3 gy-2">			
+		<div class="dropdown" id ="db1" style="display:none">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Design
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item"  onclick="test1();">State Feedback Controller</a></li>
+    
+    </b></br>
+  </ul>
+</div>&nbsp;&nbsp;		
+		
+		
+		<button class="btn btn-success" id ="Trun" onclick="str()" style="display:none">Run</button> &nbsp;&nbsp;
+		
+		
+		
+		
+		<button class="btn btn-danger" id ="clr" onclick="refresh()" style="display:none">Clear</button>
+		
+		
+		
+	</div></div>
+	<input type="number" id="chktest" value="0" style="visibility:hidden">
+	</div>
+	</br>
+	<div class="row my-5 gy-2">
+	
+	<div class="col-md-12">
+	<div   class="img-container">			
+			
+			<!--<img class = "img-fluid" src="./images/DF_IIM.png" class="img-fluid" > <br/></br> -->
+			
+			<div id="tfbody3" class="card card-body text-left" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>	
+			
+			<span class="card-text text-left"><b>Controllability Test</b></span>
+			
+			$$ Q_c = [g_a, \ F_ag_a, \ F_a^2g_a] $$
+			
+			<span class="card-text" id="matQcg" ></span><br/<br/>
+			<span class="card-text" id="matQcFg" ></span><br/<br/>
+			<span class="card-text" id="matQcFFg" ></span><br/<br/>
+			
+			<span class="card-text" id="matQc" ></span><br/<br/>
+			 
+			<button class="btn btn-success" onclick="showRank()">Rank of <span style='font-family:Bodoni MT;font-style:italic;font-size:18px'>Q<sub>c</sub></span></button>
+				<span id="Cntrl_Test1" style="display:none"></span><br/><br/>
+			<button class="btn btn-success" onclick="showDetQc()">Determinant of <span style='font-family:Bodoni MT;font-style:italic;font-size:18px'>Q<sub>c</sub></span></button>
+			    <span id="Cntrl_Test2" style="display:none"></span><br/><br/>
+			<button class="btn btn-success" onclick="showinfo()">Inference</button>
+				<span id="Cntrl_Test3" style="display:none"></span><br/><br/>
+			<button class="btn btn-success" onclick="GVc()">Gain Values </button>
+				<span id="DChar_Eq" style="display:none"></span>
+				<span id="Desired_char" style="display:none"></span><br/>
+				<span id="Char_Eq" style="display:none"></span>
+				<span id="Closed_loop_char" style="display:none"></span><br/>
+				<span id="Feedback_gain_Value_K" style="display:none"></span><br/>
+				<span id="PID_Controller" style="display:none"></span><br/>
+				<span id="Pre-Compensator_Gain_Value" style="display:none"></span>
+				
+				
+				
+		    <br/>
+				
+				<p id="Cntrl_Test1"/>
+				<p id="Cntrl_Test2"/>
+				
+				<!--<p id="Feedback_gain_Value1"/>
+				<p id="Feedback_gain_Value2"/>
+				<p id="Feedback_gain_Value3"/>
+				<p id="Feedback_gain_Value4"/>-->
+				
+				<p id="Feedback_gain_Value_K"/>
+				<p id="PID_Controller"/>
+				
+			</div>
+			
+			<div id="plotBody" class="card" style="display:none;width:100%;min-width:1000px;background-color:none">
+			<br/>
+			<div class="card-title"><b>Simulation: Unit Step Response </b></div><br/>
+			<button class="btn btn-success" id ="plotA" onclick="plotCNTR()" style="visibility:hidden">Closed Loop Response</button><br/><br/>
+			</div>
+			
+			
+			
+			
+			<br/>
+	
+	        
+	
+	</div>
+	
+	</div></div>
+	
+			
+	        
+		
+		
+		
+	 <div class="row justify-content-center"><!-----------------------graph T vs. w----------------------------------------->
+		
+	 
+			<div class="col-md-12">
+				<!--img id = "0.3fr" src="./images/plant.png" class="img-fluid" style="display:none">-->
+				<button type="button" id="exportChart" class="btn btn-primary" onclick="saveImg()" style="display:none;">Download Plot</button>
+				<div id = "plotbucket" class="content-center " style="display:none; position:relative; border:3px solid white;height:900px;width:1000px ">
+				
+				<!--<button type="button" id="exportChart2" class="btn btn-primary"  style="display:none;position:absolute;top:210%;left:28%;">Download Plot</button>-->
+				
+					<div id="chartContainer1"  style="display:none; position:absolute; height:45%; width:100%;z-index:1 "></div>
+					
+				</div>
+				<!--<button type="button" id="exportChart" class="btn btn-primary"  >Download Plot</button>-->
+				
+			</div>
+			
+			
+		
+	</div>	
+
+	
+	
+          <!-- Code End here-->
+        </div><!--Fourth container under body tag end-->
+          
+      <!--</div>
+    </div>-->
+
+    <div class="container p-3 my-5 text-primary text-center border"><!--Last and fifth container under body tag start-->
+      <div class="row">
+        <footer>
+          <div class="row ce">
+            <div class="col-sm-12">
+              <p class="h5"><i> Copyright ©2022 <a href="http://vlabs.iitkgp.ac.in/vlt/">Virtual Labs IIT Kharagpur</a> </i><br><br>
+              <a href="../../license/index.html" target="_blank"> Licensing Terms </a>
+            </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+  </div><!--Last and fifth container under body tag end-->
+  
+   
+	
+	
+</body><!--body tag end-->
+</html><!--html tag end-->

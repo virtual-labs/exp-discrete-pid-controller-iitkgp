@@ -2,38 +2,61 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Q1. What does PID stand for in a PID controller?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Proportional, Integral, Derivative",
+        "b": "Proportional, Inductive, Derivative",
+        "c": "Pulse, Integral, Derivative",
+        "d": "Proportional, Integral, Discrete"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Q2. What is the effect of the derivative term in a PID controller?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Reduces steady-state error",
+        "b": "Increases system stability and reduces overshoot",
+        "c": "Increases the steady-state error",
+        "d": "Reduces response speed"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q3. Which type of error is minimized by the integral action of a PID controller?",
+      "answers": {
+        "a": "Dynamic error",
+        "b": "Transient error",
+        "c": "Steady-state error",
+        "d": "Oscillatory error"
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Q4. What is the transfer function of a standard PID controller?",
+      "answers": {
+        "a": "<img src='./images/prq4a.png'/>",
+        "b": "<img src='./images/prq4b.png'/>",
+        "c": "<img src='./images/prq4c.png'/>",
+        "d": "<img src='./images/prq4d.png'/>"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q5. In the PID controller, which component is responsible for increasing the system response speed?",
+      "answers": {
+        "a": "Proportional (P) term",
+        "b": "Integral (I) term",
+        "c": "Derivative (D) term",
+        "d": "None of the above"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
     }
+	
+	
   ]
 }
