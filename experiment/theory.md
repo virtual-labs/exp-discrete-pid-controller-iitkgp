@@ -49,6 +49,8 @@ $$ y[k] = C x[k] \tag{5b} $$
 <img class="img-fluid"  src="./images/F_g.png" alt=""><br>
 </div>
 
+where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">T<sub>s</sub></span> is the sampling time.</br></br>
+
 <b><i>Adding Integral State for PID Control:</i></b> <br>
 The integral state is defined as:<br/>
 
@@ -60,7 +62,7 @@ where, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">r[k]
 <b><i>State Space Model of the DC motor:</i></b> <br>
 <br/> Continuous State Space form: <br/>
 
-$$	\begin{bmatrix} 	\dot{x}_1(t)  \\	\dot{x}_2(t) \end{bmatrix}	= \begin{bmatrix} 	0  & 1 \\	0 & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} 	x_1(t)  \\	x_2(t) \end{bmatrix} + \begin{bmatrix} 0  \\	\frac{K}{J} \end{bmatrix} u(t)	\quad	\tag{7} $$ 
+$$	\begin{bmatrix} 	\dot{x}_1(t)  \newline	\dot{x}_2(t) \end{bmatrix}	= \begin{bmatrix} 	0  & 1 \newline	0 & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} 	x_1(t)  \newline	x_2(t) \end{bmatrix} + \begin{bmatrix} 0  \newline	\frac{K}{J} \end{bmatrix} u(t)	\quad	\tag{7} $$ 
 
 where,
 <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>1</sub></span> is the position ( <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ), <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">x<sub>2</sub></span> is the velocity, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">u(t)</span> is the input voltage, <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">y(t)</span> is the output (position <span style="font-family:Bodoni MT;font-style:italic;font-size:18px">θ</span> ). 
@@ -72,7 +74,7 @@ $$	\begin{bmatrix} 	x_1 [k+1]  \newline	x_2 [k+1] \end{bmatrix}	= \begin{bmatrix
 
 <br/> Discrete State Space form with Integral state: <br/>
 
-$$	\begin{bmatrix} 	x_1 [k+1]  \newline	x_2 [k+1] \newline x_3[k+1] \end{bmatrix}	= \begin{bmatrix} 	1  & T_{s} & 0 \newline	0 & 1-\frac{b}{J} T_{s} & 0 \newline - T_{s} & 0 & 1 \end{bmatrix} \begin{bmatrix} 	x_1 [k] \newline x_2 [k] \newline x_3[k] \end{bmatrix} + \begin{bmatrix} \frac{K {T_{s}^2}{2J}  \newline	\frac{K T_{s}}{J} (1-\frac{b T_{s}}{2J}) \newline 0\end{bmatrix} u[k]	\quad	\tag{9} $$ 
+$$	\begin{bmatrix} 	x_1 [k+1]  \newline	x_2 [k+1] \newline x_3[k+1] \end{bmatrix}	= \begin{bmatrix} 	1  & T_{s} & 0 \newline	0 & 1-\frac{b}{J} T_{s} & 0 \newline - T_{s} & 0 & 1 \end{bmatrix} \begin{bmatrix} 	x_1 [k] \newline x_2 [k] \newline x_3[k] \end{bmatrix} + \begin{bmatrix} \frac{K {T_{s}^2}}{2J}  \newline	\frac{K T_{s}}{J} (1-\frac{b T_{s}}{2J}) \newline 0\end{bmatrix} u[k]	\quad	\tag{9} $$ 
 
 <b><i>Designing the State Feedback Controller:</i></b> <br>
 Now that the discretized system with the integral state is available, the next step is to design the state feedback controller using pole placement. In this process, the objective is to determine the feedback gains that place the poles of the closed-loop system at desired locations for achieving the desired stability and performance.<br/>
